@@ -1,7 +1,7 @@
 const { check, printGreenMessage, printRedMessage } = require("../../../test-api");
 
-function modulo() {
-  // return the remainder of the division a / b
+function modulo(a, b) {
+return a % b;
 }
 
 console.log("modulo() gives the correct output");
@@ -16,8 +16,8 @@ try {
   printRedMessage(error);
 }
 
-function squareRoot() {
-  // return the square root of n
+function squareRoot(total) {
+return Math.sqrt(total);
 }
 
 console.log("squareRoot() works for positive integers");
@@ -33,8 +33,8 @@ try {
   printRedMessage(error);
 }
 
-function raiseToPower() {
-  // return the result of raising m to the nth power
+function raiseToPower(num, power) {
+return Math.pow(num,power);
 }
 
 console.log("raiseToPower() raises given number to a power");
@@ -49,7 +49,12 @@ try {
   printRedMessage(error);
 }
 
-// declare capitaliseFirstLetter here
+function capitaliseFirstLetter(str) {
+const firstPart = str[0].toUpperCase();
+const secondPart = str.slice(1);
+
+return firstPart + secondPart;
+ }
 
 console.log("capitaliseFirstLetter() can capitalise the first letter in a string");
 try {
@@ -68,6 +73,13 @@ try {
 // return true if the passed arguments are strictly equal
 // you can complete this problem without resorting to if statements
 
+
+function areValuesEqual(a,b){
+return a === b ? true : false
+};
+
+
+
 console.log("areValuesEqual() checks if two values are the same");
 try {
   check(areValuesEqual).whenCalledWith(10, 10).returns(true);
@@ -84,6 +96,11 @@ try {
 // return true if the year is in the 1960's
 // returns false otherwise
 // you can complete this problem without resorting to if statements
+
+function isFromThe60s(num){
+  return num > 1959 && num < 1970 ? true : false;
+}
+
 
 console.log("isFromThe60s() checks if a number is within 1960 to 1969 (inclusive)");
 try {
@@ -106,6 +123,12 @@ try {
 // return true if string has an even length
 // you can complete this problem without resorting to if statements
 
+function isEvenLength(str){
+return str.length % 2 == 0 ? true : false;
+}
+
+
+
 console.log("isEvenLength() checks if string has even number of characters");
 try {
   check(isEvenLength).whenCalledWith("hello").returns(false);
@@ -121,6 +144,10 @@ try {
 
 // checks if a string is an absolute path - does it start with a /
 // HINT: all absolute file paths start with a /
+
+function isAbsolutePath(str){
+return str.substring(0,1) === '/' ? true : false;
+}
 
 console.log("isAbsolutePath() checks if a file path is absolute or relative");
 
@@ -139,6 +166,15 @@ try {
 
 // return the middle (or middle two) character(s) of the passed string
 // HINT: You could use the ternary operator for this challenge
+
+function getMiddle(str) {
+  var middle = str.length / 2;
+  return (str.length % 2) 
+    ? str.charAt(Math.floor(middle))
+    : str.slice(middle - 1, middle + 1);
+}
+
+
 
 console.log("getMiddle() returns the middle character in a string of odd length");
 try {
@@ -168,6 +204,10 @@ try {
 // Look up ASCII online to get a better idea of what a character code is
 // Look up a useful JavaScript method for dealing with charCodes !
 
+function getCharCode(a) { 
+  return `The ASCII character for ${a} is ${a.charCodeAt(0)}`; 
+}
+
 console.log("getCharCode() will return a message stating the ascci code of a passed char");
 
 try {
@@ -188,6 +228,12 @@ try {
 
 // should take 2 numbers and work out their percentage
 
+function createPercentage(num1,num2){
+var num = Math.round((num1 / num2) * 100);
+return num.toString() + '%';
+}
+
+
 console.log('createPercentage() creates a percentage string in the form "--%"');
 
 try {
@@ -206,6 +252,25 @@ try {
 // declare extractNumber here
 
 // should extract a number embedded in a string surrounded by ( ) parentheses
+
+function extractNumber(str){
+  var answer = [];
+  var numbers = ['0','1','2','3','4','5','6','7','8','9','10']
+  var splitt = str.split('')
+for(let i = 0; i < splitt.length; i++){
+  for(let j = 0; j < numbers.length; j++){
+if(splitt[i] === numbers[j]){
+answer.push(numbers[j])
+}
+  }
+}
+return parseInt(answer.join(''));
+}
+
+console.log(extractNumber("lasjdasasj(123)asljdlajk"));
+
+
+
 
 console.log("extractNumber() should return the number buried inside a string");
 
