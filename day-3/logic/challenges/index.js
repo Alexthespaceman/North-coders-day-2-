@@ -1,7 +1,13 @@
 const { check, runTest, skipTest } = require("../../../test-api");
 
-function isBiggerThan10() {
-  // checks if an number is strictly bigger than 10 and returns a message accordingly
+function isBiggerThan10(num) {
+  if(num < 10){
+    return "Number " + num + " is less than 10";
+} else if (num == 10){
+  return "Number " + num + " is equal to 10";
+} else if (num > 10){
+  return "Number " + num + " is more than 10";
+}
 }
 
 runTest("isBiggerThan10() returns a message indicating if a number is bigger than 10", function () {
@@ -13,11 +19,14 @@ runTest("isBiggerThan10() returns a message indicating if a number is bigger tha
   check(isBiggerThan10).whenCalledWith(100).returns("Number 100 is more than 10");
 });
 
-function isFalsy() {
-  // checks if a value is falsy and returns true if it is - returns false otherwise
+function isFalsy(x) {
+ if(x === true){
+   return false;
+ }
+ return true;
 }
-
-skipTest("isFalsy() returns true if a value is falsy and false if it is truthy", function () {
+ // checks if a value is falsy and returns true if it is - returns false otherwise
+runTest("isFalsy() returns true if a value is falsy and false if it is truthy", function () {
   check(isFalsy).whenCalledWith(false).returns(true);
   check(isFalsy).whenCalledWith("").returns(true);
   check(isFalsy).whenCalledWith(0).returns(true);
